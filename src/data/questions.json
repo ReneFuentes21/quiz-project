@@ -1,0 +1,72 @@
+[
+{   "id": 1,
+    "title": "¿Qué significa HTML?",
+    "correct": "HyperText Markup Language",
+    "incorrect1":"Home Tool Markup Language",
+    "incorrect2":"HighText Machine Language",
+    "incorrect3":"Hyperlinks and Text Markup Language"
+},
+{   "id": 2,
+    "title": "¿Qué etiqueta se usa para crear un enlace?",
+    "correct": "a",
+    "incorrect1":"link",
+    "incorrect2":"href",
+    "incorrect3":"url"
+},
+{   "id": 3,
+    "title": "¿Cuál es la etiqueta correcta para insertar una imagen?",
+    "correct": "img",
+    "incorrect1":"pic",
+    "incorrect2":"image",
+    "incorrect3":"src"
+},
+{   "id": 4,
+    "title": "¿Qué atributo se usa para especificar el destino de un enlace?",
+    "correct": "href",
+    "incorrect1":"hrefs",
+    "incorrect2":"src",
+    "incorrect3":"link"
+},
+{   "id": 5,
+    "title": "¿Cuál es la etiqueta correcta para un salto de línea?",
+    "correct": "br",
+    "incorrect1":"lb",
+    "incorrect2":"break",
+    "incorrect3":"brk"
+},
+{   "id": 6,
+    "title": "¿Qué etiqueta se usa para definir una lista ordenada?",
+    "correct": "ol",
+    "incorrect1":"ul",
+    "incorrect2":"list",
+    "incorrect3":"li"
+},
+{   "id": 7,
+    "title": "¿Qué etiqueta se usa para resaltar texto en negrita?",
+    "correct": "strong",
+    "incorrect1":"bld",
+    "incorrect2":"bold",
+    "incorrect3":"em"
+},
+{   "id": 8,
+    "title": "¿Qué etiqueta se usa para definir el encabezado principal de una página?",
+    "correct": "h1",
+    "incorrect1":"h0",
+    "incorrect2":"header",
+    "incorrect3":"title"
+},
+{   "id": 9,
+    "title": " ¿Qué atributo se usa para aplicar una clase CSS a un elemento HTML?",
+    "correct": "class",
+    "incorrect1":"style",
+    "incorrect2":"css",
+    "incorrect3":"id"
+},
+{   "id": 10,
+    "title": "¿Qué etiqueta se usa para insertar una tabla?",
+    "correct": "table",
+    "incorrect1":"tab",
+    "incorrect2":"tdbl",
+    "incorrect3":"tbl"
+}
+]
