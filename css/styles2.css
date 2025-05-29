@@ -1,0 +1,125 @@
+*{
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}/*primera buena practica: resetear los margenes*/
+
+
+/*pseudoclase global root: sirve para definir variables
+que se usaran en todos los estilos*/
+/*se puede definir la semantica de colores, tipos de fuentes,
+tamaño de fuente, todo lo que se manejará de forma global*/
+
+:root{
+    --box-color: pink;
+    --secondary-color: brown;
+    --font-family: 'Poppins', sans-serif;
+}
+
+.title{
+    text-align: center;
+    font-family: var(--font-family); /*var() sirve para llamar la variable que hicimos
+    y asignar eso*/
+}
+
+/*LLamando la clase box para que se vean lass cajitas*/
+.box{
+    background-color: var(--box-color);
+    width: 200px;
+    height: 200px;
+    color: var(--secondary-color); /*color de la letra*/
+    display: flex; /*Agregamos aca el flex*/
+    align-items: center; /*Alinea el contenido en  las cajitas, se agrega acá
+    ya quelas personas se ssie*/
+    justify-content: center;
+}
+
+
+@media(max-width: 576px){
+    main{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+    
+}
+
+/*Siempre preguntar por la adaptación para pantalla chica, MUY IMPORTAMTE
+Contenido, colores, fuentes */
+
+/*--------- MEDIA QUERY ---------*/
+/*Meida query con rangos::after
+Propiedades: max-width, min-width: de ese rango para arriba*/
+
+@media(min-width:920px)
+{
+   /*OJO CUANDO USEMOS FLEX Y GRID:
+Para que las cajitas se muevan debemos poner la propiedad flexbox al
+padre, no al hijo. Para que se muevan las cajas.*/
+
+.flexbox{ /*Clase papá*/
+    display: flex;
+    justify-content:space-around; /*se justifica el contenido para que no quede tan junto*/
+    gap: 1rem; /*Propiedad de flexbox o css grid, es un margen que se le da
+    a todos los elementos*/
+    align-items: center; /*Alinea lo q ue está adentro de la caja*/
+    }
+    
+    .flex-container{
+        display: flex;
+        flex-direction: row-reverse; /*Cambiar el orden de las cosas*/
+        gap: 1.5rem;
+        margin: 1rem 0; /*Margen con las cajas de arriba*/
+    }
+    /*Propiedades flexbox al padre de lo que queremos
+    que tnga la propiedad de flexbox*/
+    
+    /*OJO: siempre buscar el contenido del lpadre de los elementos 
+    que queremos alinear*/
+    
+    /*----- CSS GRID -----*/
+    
+    /*Usaremos cuadrícula, en base a eso tomar en cuenta las cajas*/
+    .gridbox{
+        display: grid;
+        /*grid-template-columns: 1fr 1fr 1fr; Indica 3 columnas y que tendran el mín ancho
+        del 100 % lo dividio en 3 columnas*/
+        grid-template-columns: repeat(5, 1fr); /*Indica 3 columnas*/
+        /*grid-template-rows: repeat(3,200px); de alto cada fila tiene 200px*/
+        /*o ponerlo de forma auto, el navegador las pone por uno*/
+        grid-template-rows: auto; /*de preferencia de forma automática*/
+        gap: 1rem;
+    }
+    
+    /*llamando la primera cajita de gridbox*/
+    .gridbox .box:nth-child(1){
+        grid-area: 1/1/2/3;
+        /*1 -> iniciodefila
+          2-> donde va a empezar la columna
+          3-> donde va a terminar la fila(pero el numero que ponemos no se incluye
+          4-> donde va a termiar la columna (no se incluye el num que coloquemos*/
+    }
+    
+    /*grid-area combinacion de grid-column y grid-row
+    grid-column: 1/2  donde empieza columna/donde termina
+    grid-row: 2/4;
+    grid-area: 1/2/2/3  */
+    .gridbox .box:nth-child(3){
+        grid-area: 1/4/2/6; /*empezamos column 4, terminamos en la 5*/
+        width: 100%; /*Para que pueda rellenarse todo de color
+        se adaptará al 100% de su contenedor, o sea a las dos columnas que le dimos */
+    }
+
+}
+/*OJO: CUIDADOOOO:
+Solo se agrega lo que queremos cambiar específicamente en la pagina o elemento
+cuando se esté en estas dimensiones.
+NO ES NECESARIO colocar de nuevo toda la definicion de nuestro elemento, ya que esa queda de forma global
+para cualquier tipo de pantalla.
+*/
+
+/*MEDIA QUERY PARA COLOCAR TODO ABAJO (EN PANTALLAS CHICAS Y MEDIANAS)
+
+-Debe ir todo abajo y centrado*/
+
+/*Empezar como pantallas pequeñas y luego con media query adaptar el diseño*/
