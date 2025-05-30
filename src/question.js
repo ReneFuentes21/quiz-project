@@ -68,6 +68,40 @@ function mostrarPuntaje() {
     alert(`Puntaje: ${correctas} de ${questions.length}`);
 }
 
+/*funcion para mostrar preguntas*/
+function mostrarPregunta(index) {
+    const questionsList = document.querySelector('.container-pregunta');
+    questionsList.innerHTML = ""; // Limpiar pregunta anterior
+
+    const pregunta = questions[index];
+    if (!pregunta) return;
+
+    const article = document.createElement('article');
+    article.classList.add('col-md-4');
+
+    const { id, title, correct, incorrect1, incorrect2, incorrect3 } = pregunta;
+    const respuestaGuardada = array_respuesta.find(r => r.id === id);
+
+    article.innerHTML = `
+    <section class="container-ejercicio">
+        <section class="preguntaResponder">
+            <h1>${id}. ${title}</h1>
+            <input class="form-check-input" type="radio" name="radio-${id}" value="${correct}" ${respuestaGuardada?.respuesta === correct ? 'checked' : ''}><label>${correct}</label><br>
+            <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect1}" ${respuestaGuardada?.respuesta === incorrect1 ? 'checked' : ''}><label>${incorrect1}</label><br>
+            <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect2}" ${respuestaGuardada?.respuesta === incorrect2 ? 'checked' : ''}><label>${incorrect2}</label><br>
+            <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect3}" ${respuestaGuardada?.respuesta === incorrect3 ? 'checked' : ''}><label>${incorrect3}</label><br>
+        </section>
+    </section>
+    `;
+
+    article.querySelectorAll(`input[name="radio-${id}"]`).forEach(input => {
+        input.addEventListener('change', (e) => respuesta(e, id));
+    });
+
+    questionsList.appendChild(article);
+}
+
+
 export function agregarBotonEnviar() {
     const questionsList = document.querySelector('.container-pregunta');
     const btn = document.createElement('button');
