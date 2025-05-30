@@ -12,5 +12,6 @@
 }
 
 body{
-    background-color: #313E51;
+    background-color: var(--backg-color);
+    /*color: #A529F5; */
 }
