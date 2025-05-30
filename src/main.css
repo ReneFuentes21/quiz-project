@@ -10,3 +10,7 @@
     --options-color: #3C4C67;
     --font-family: 'Poppins', sans-serif;
 }
+
+body{
+    background-color: #313E51 !important;
+}

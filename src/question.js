@@ -10,10 +10,18 @@ export function getQuestions(){
         article.classList.add('col-md-4');
 
         const {id, title, correct, incorrect1, incorrect2, incorrect3} = pregunta
-
+        
         // Se busca si hay respuesta previa guardada para esta pregunta
         const respuestaGuardada = array_respuesta.find(r => r.id === id);
+        
+        let seleccionado = "";
 
+        array_respuesta.forEach(respuesta => {
+            if ( respuesta == respuestaGuardada ){
+                seleccionado = respuesta;
+            }
+        })
+        
         /*El atributo `name="radio-${id}"` agrupa las opciones por pregunta usando el id, 
         asegurando que solo se pueda seleccionar una opción por pregunta.
         Con la parte `${respuestaGuardada?.respuesta === valor ? 'checked' : ''}` 
@@ -24,14 +32,13 @@ export function getQuestions(){
         <section class="container-ejercicio">
             <section class="preguntaResponder">
                 <h1>${id}.${title}</h1>
-                <input class="form-check-input" type="radio" name="radio-${id}" value="${correct}" ${respuestaGuardada?.respuesta === correct ? 'checked' : ''}><label>${correct}</label>
+                <input class="form-check-input" type="radio" name="radio-${id}" value="${correct}" ${respuestaGuardada?.respuesta === correct ? 'checked' : '' } ${seleccionado ? 'disabled': ''} ><label>${correct}</label>
                 <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect2}" ${respuestaGuardada?.respuesta === incorrect2 ? 'checked' : ''}><label>${incorrect2}</label>
                 <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect3}" ${respuestaGuardada?.respuesta === incorrect3 ? 'checked' : ''}><label>${incorrect3}</label>
                 <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect1}" ${respuestaGuardada?.respuesta === incorrect1 ? 'checked' : ''}><label>${incorrect1}</label>
             </section>
         </section>
         `
-
          // Se asigna el evento a cada input individualmente
         article.querySelectorAll(`input[name="radio-${id}"]`).forEach(input => {
             input.addEventListener('change', (e) => respuesta(e, id));
@@ -39,6 +46,7 @@ export function getQuestions(){
 
         questionsList.appendChild(article)
     })
+    
 }
 
 export function respuesta(e, idPregunta) {
