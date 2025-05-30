@@ -1,26 +1,30 @@
 import questions from "./data/questions.json";
+
 let array_respuesta = JSON.parse(localStorage.getItem('quiz')) || [];
+let currentQuestionIndex = 0; // Esta variable nos ayudará a saber qué pregunta mostrar
 
-export function getQuestions(){
+export function getQuestions() {
     const questionsList = document.querySelector('.container-pregunta');
+    questionsList.innerHTML = ''; // Importante: Limpiamos el contenedor antes de añadir la nueva pregunta
 
-    questions.map(pregunta =>{
-        const article = document.createElement('article');
+    // Obtenemos la pregunta actual usando el índice
+    const pregunta = questions[currentQuestionIndex];
 
-        article.classList.add('col-md-4');
+    // Si ya no hay más preguntas, mostramos el puntaje final
+    if (!pregunta) {
+        mostrarPuntaje();
+        return; // Salimos de la función
+    }
 
-        const {id, title, correct, incorrect1, incorrect2, incorrect3} = pregunta
+    const article = document.createElement('article');
+    article.classList.add('col-md-4');
 
-        // Se busca si hay respuesta previa guardada para esta pregunta
-        const respuestaGuardada = array_respuesta.find(r => r.id === id);
+    const { id, title, correct, incorrect1, incorrect2, incorrect3 } = pregunta;
 
-        /*El atributo `name="radio-${id}"` agrupa las opciones por pregunta usando el id, 
-        asegurando que solo se pueda seleccionar una opción por pregunta.
-        Con la parte `${respuestaGuardada?.respuesta === valor ? 'checked' : ''}` 
-        se verifica si el usuario ya había seleccionado esa respuesta antes (guardada en localStorage).
-        Si es así, se marca esa opción como seleccionada al cargar la página.
-         */
-        article.innerHTML = `
+    // Buscamos si ya hay una respuesta guardada para esta pregunta
+    const respuestaGuardada = array_respuesta.find(r => r.id === id);
+
+    article.innerHTML = `
         <section class="container-ejercicio">
             <section class="preguntaResponder">
                 <h1>${id}.${title}</h1>
@@ -30,22 +34,28 @@ export function getQuestions(){
                 <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect1}" ${respuestaGuardada?.respuesta === incorrect1 ? 'checked' : ''}><label>${incorrect1}</label>
             </section>
         </section>
-        `
+    `;
 
-         // Se asigna el evento a cada input individualmente
-        article.querySelectorAll(`input[name="radio-${id}"]`).forEach(input => {
-            input.addEventListener('change', (e) => respuesta(e, id));
+    // Asignamos el evento 'change' a cada opción de respuesta
+    article.querySelectorAll(input[name="radio-${id}"]).forEach(input => {
+        input.addEventListener('change', (e) => {
+            respuesta(e, id); // Guardamos la respuesta del usuario
+            // Después de responder, avanzamos a la siguiente pregunta con un pequeño retraso
+            setTimeout(() => {
+                currentQuestionIndex++; // Incrementamos el índice para la siguiente pregunta
+                getQuestions(); // Llamamos de nuevo a la función para cargar la siguiente pregunta
+            }, 300); // 300 milisegundos de espera
         });
+    });
 
-        questionsList.appendChild(article)
-    })
+    questionsList.appendChild(article); // Añadimos la pregunta al DOM
 }
 
 export function respuesta(e, idPregunta) {
     console.log(e.target.value);
 
     const valor = e.target.value;
-    // Se reemplaza si ya existe una respuesta para esa pregunta
+    // Buscamos si ya existe una respuesta para esta pregunta y la actualizamos, si no, la añadimos
     const index = array_respuesta.findIndex(r => r.id === idPregunta);
     if (index !== -1) {
         array_respuesta[index].respuesta = valor;
@@ -53,10 +63,10 @@ export function respuesta(e, idPregunta) {
         array_respuesta.push({ id: idPregunta, respuesta: valor });
     }
 
-    localStorage.setItem('quiz', JSON.stringify(array_respuesta))
+    localStorage.setItem('quiz', JSON.stringify(array_respuesta)); // Guardamos en localStorage
 }
 
-// Función para mostrar el puntaje
+// Función para mostrar el puntaje final
 function mostrarPuntaje() {
     let correctas = 0;
     questions.forEach(pregunta => {
@@ -68,10 +78,12 @@ function mostrarPuntaje() {
     alert(`Puntaje: ${correctas} de ${questions.length}`);
 }
 
+// Esta función para el botón "Enviar" ya no es tan crítica si las preguntas avanzan solas.
+// Podrías usarla para un botón final de "Ver mi puntaje" al terminar todo el cuestionario.
 export function agregarBotonEnviar() {
     const questionsList = document.querySelector('.container-pregunta');
     const btn = document.createElement('button');
-    btn.textContent = 'Enviar respuestas';
+    btn.textContent = 'Ver mi puntaje';
     btn.addEventListener('click', mostrarPuntaje);
     questionsList.appendChild(btn);
 }
