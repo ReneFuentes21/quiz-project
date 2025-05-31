@@ -37,7 +37,7 @@ export function getQuestions() {
     `;
 
     // Asignamos el evento 'change' a cada opción de respuesta
-    article.querySelectorAll(input[name="radio-${id}"]).forEach(input => {
+    article.querySelectorAll(`input[name="radio-${id}"]`).forEach(input => {
         input.addEventListener('change', (e) => {
             respuesta(e, id); // Guardamos la respuesta del usuario
             // Después de responder, avanzamos a la siguiente pregunta con un pequeño retraso
@@ -45,7 +45,7 @@ export function getQuestions() {
                 currentQuestionIndex++; // Incrementamos el índice para la siguiente pregunta
                 getQuestions(); // Llamamos de nuevo a la función para cargar la siguiente pregunta
             }, 300); // 300 milisegundos de espera
-    });
+        });
     });
 
     questionsList.appendChild(article); // Añadimos la pregunta al DOM
