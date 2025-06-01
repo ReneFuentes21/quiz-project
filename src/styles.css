@@ -28,6 +28,7 @@ body{
     flex-direction: column;
     padding-top: 3rem;
     padding-bottom: 3rem;
+    
 }
 
 .radio-texto{
@@ -36,6 +37,3 @@ body{
     align-items:flex-start;
 }
 
-.radio-texto input[type="radio"] {
-    margin-right: 1rem;
-}

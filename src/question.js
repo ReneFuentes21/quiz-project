@@ -87,8 +87,8 @@ function mostrarPregunta(index) {
     article.innerHTML = `
     <section class="container-ejercicio">
         <section class="preguntaResponder">
-            <h1>${id}. ${title}</h1>
-            <input class="form-check-input" type="radio" name="radio-${id}" value="${correct}" ${respuestaGuardada?.respuesta === correct ? 'checked' : ''}><label>${correct}</label><br>
+            <h1>${id}. ${title}</h1>`
+            `<input class="form-check-input" type="radio" name="radio-${id}" value="${correct}" ${respuestaGuardada?.respuesta === correct ? 'checked' : ''}><label>${correct}</label><br>
             <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect1}" ${respuestaGuardada?.respuesta === incorrect1 ? 'checked' : ''}><label>${incorrect1}</label><br>
             <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect2}" ${respuestaGuardada?.respuesta === incorrect2 ? 'checked' : ''}><label>${incorrect2}</label><br>
             <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect3}" ${respuestaGuardada?.respuesta === incorrect3 ? 'checked' : ''}><label>${incorrect3}</label><br>
@@ -100,7 +100,7 @@ function mostrarPregunta(index) {
         input.addEventListener('change', (e) => respuesta(e, id));
     });
 
-    questionsList.appendChild(article);
+    questionsList.appendChild(article);'0'
 }
 
 
