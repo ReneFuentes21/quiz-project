@@ -16,24 +16,39 @@ body{
     color: #dbdada;
 }
 
+h1{
+    font-weight: bold;
+    padding-left: 2.5rem;
+}
+
 .container-pregunta
 {
     display: flex;
     justify-content: center;
     flex-direction: column;
     align-items: center;
+
 }
 .preguntaResponder{
-    display: flex;
-    flex-direction: column;
     padding-top: 3rem;
     padding-bottom: 3rem;
-    
 }
 
-.radio-texto{
+/*hace que las opciones estén una debajo de otra*/
+.opciones{
     display: flex;
     flex-direction: column;
-    align-items:flex-start;
+    padding-top: 2rem;
 }
 
+/*Margen entre cada opción*/
+.opcion{
+    margin: 2rem;
+    background-color: var(--options-color);
+    padding: 2rem;
+    border-radius: 1rem;
+}
+
+.opcion label{
+    padding-left: 1.5rem; /*espacio entre radbutton y texo*/
+}

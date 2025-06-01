@@ -39,14 +39,22 @@ export function getQuestions() {
     const respuestaGuardada = array_respuesta.find(r => r.id === id);
 
     article.innerHTML = `
-        <section class="container-ejercicio">
+        <section class="container-pregunta">
             <section class="preguntaResponder">
                 <h1> ${title}</h1>
-                <section class="radio-texto">
-                <input class="form-check-input" type="radio" name="radio-${id}" value="${correct}" ${respuestaGuardada?.respuesta === correct ? 'checked' : ''}><label>${correct}</label>
-                <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect2}" ${respuestaGuardada?.respuesta === incorrect2 ? 'checked' : ''}><label>${incorrect2}</label>
-                <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect3}" ${respuestaGuardada?.respuesta === incorrect3 ? 'checked' : ''}><label>${incorrect3}</label>
-                <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect1}" ${respuestaGuardada?.respuesta === incorrect1 ? 'checked' : ''}><label>${incorrect1}</label>
+                <section class="opciones"> <!--- Contenedor de opciones---->
+                    <div class="opcion"> <!---hace que el radbutton y label estén en misma fila--->
+                        <input class="form-check-input" type="radio" name="radio-${id}" value="${correct}" ${respuestaGuardada?.respuesta === correct ? 'checked' : ''}><label>${correct}</label>
+                    </div>
+                    <div class="opcion">
+                        <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect2}" ${respuestaGuardada?.respuesta === incorrect2 ? 'checked' : ''}><label>${incorrect2}</label>
+                    </div>
+                    <div class="opcion">
+                        <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect3}" ${respuestaGuardada?.respuesta === incorrect3 ? 'checked' : ''}><label>${incorrect3}</label>
+                    </div>
+                    <div class="opcion">
+                        <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect1}" ${respuestaGuardada?.respuesta === incorrect1 ? 'checked' : ''}><label>${incorrect1}</label>
+                    </div>
                 </section>
             </section>
         </section>
