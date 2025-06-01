@@ -1,3 +1,4 @@
+import { Button } from "bootstrap/dist/js/bootstrap.bundle.min";
 import questions from "./data/questions.json";
 
 // Función para barajar un array (algoritmo de Fisher-Yates)
@@ -34,9 +35,11 @@ export function getQuestions() {
     article.classList.add('col-md-4');
 
     const { id, title, correct, incorrect1, incorrect2, incorrect3 } = pregunta;
-
+    
     // Buscamos si ya hay una respuesta guardada para esta pregunta
     const respuestaGuardada = array_respuesta.find(r => r.id === id);
+
+
 
     article.innerHTML = `
         <section class="container-ejercicio">
@@ -55,26 +58,45 @@ export function getQuestions() {
                     <div class="opcion">
                         <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect1}" ${respuestaGuardada?.respuesta === incorrect1 ? 'checked' : ''}><label>${incorrect1}</label>
                     </div>
+                    <button class="btn btn-primary " id="btn-siguiente" type="submit" name="siguiente">Siguiente Pregunta</button>
                 </section>
             </section>
-        </section>
+                
     `;
 
     // Asignamos el evento 'change' a cada opción de respuesta
     article.querySelectorAll(`input[name="radio-${id}"]`).forEach(input => {
         input.addEventListener('change', (e) => {
             respuesta(e, id); // Guardamos la respuesta del usuario
-            // Después de responder, avanzamos a la siguiente pregunta con un pequeño retraso
-            setTimeout(() => {
-                currentQuestionIndex++; // Incrementamos el índice para la siguiente pregunta
-                getQuestions(); // Llamamos de nuevo a la función para cargar la siguiente pregunta
-            }, 300); // 300 milisegundos de espera
         });
     });
 
     questionsList.appendChild(article); // Añadimos la pregunta al DOM
     actualizarBarraProgreso(); //Actualizando barra de progreso
+    
+    if (article.querySelector(`input[name="radio-${id}"]:checked`)) {
+        // Si el innerHTML ha marcado algo (por localStorage), lo desmarcamos.
+        // Esto solo ocurre cuando la pregunta se renderiza.
+        article.querySelectorAll(`input[name="radio-${id}"]`).forEach(input => {
+            input.checked = false;
+        });
+    }
+
+    // Asignar evento al botón "Siguiente Pregunta"
+    const btnSiguiente = article.querySelector('#btn-siguiente');
+    btnSiguiente.addEventListener('click', () => {
+    // Verificamos si alguna opción está seleccionada
+    const seleccionado = article.querySelector(`input[name="radio-${id}"]:checked`);
+    if (!seleccionado) {
+        alert('Por favor, selecciona una respuesta antes de continuar.');
+        return; // No avanza si no hay selección
+    }
+
+    currentQuestionIndex++; // Pasamos a la siguiente pregunta
+    getQuestions(); // Llamamos la función para mostrar la siguiente pregunta
+    });
 }
+
 
 export function respuesta(e, idPregunta) {
     console.log(e.target.value);
