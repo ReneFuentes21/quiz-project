@@ -39,7 +39,7 @@ export function getQuestions() {
     const respuestaGuardada = array_respuesta.find(r => r.id === id);
 
     article.innerHTML = `
-        <section class="container-pregunta">
+        <section class="container-ejercicio">
             <section class="preguntaResponder">
                 <h1> ${title}</h1>
                 <section class="opciones"> <!--- Contenedor de opciones---->
@@ -73,6 +73,7 @@ export function getQuestions() {
     });
 
     questionsList.appendChild(article); // Añadimos la pregunta al DOM
+    actualizarBarraProgreso(); //Actualizando barra de progreso
 }
 
 export function respuesta(e, idPregunta) {
@@ -110,4 +111,22 @@ export function agregarBotonEnviar() {
     btn.textContent = 'Ver mi puntaje';
     btn.addEventListener('click', mostrarPuntaje);
     questionsList.appendChild(btn);
+}
+
+
+//función que actualiza la barra de progreso según las preguntas respondidas hasta el momento
+function actualizarBarraProgreso() {
+    const barra = document.getElementById('barra-progreso');
+    if (!barra) return; // Evita que dé error si aun no se ha construido la barra
+
+    const total = aleatorioQuestions.length;
+    //Para 
+    const respondidas = array_respuesta.filter(r =>aleatorioQuestions.some(p => p.id === r.id && r.respuesta)).length;
+
+    
+    const porcentaje = Math.round((respondidas / total) * 100);
+
+    barra.style.width = `${porcentaje}%`;
+    barra.setAttribute('aria-valuenow', porcentaje);
+    barra.textContent = `${porcentaje}%`;
 }
