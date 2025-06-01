@@ -1,5 +1,19 @@
 import questions from "./data/questions.json";
 
+// Función para barajar un array (algoritmo de Fisher-Yates)
+function aleatorioArray(array) {
+    for (let i = array.length - 1; i > 0; i--) {
+        // Genera un índice aleatorio entre 0 y i
+        const j = Math.floor(Math.random() * (i + 1));
+        // Intercambia el elemento actual con el elemento en el índice aleatorio
+        [array[i], array[j]] = [array[j], array[i]];
+    }
+    return array;
+}
+
+// Creamos una copia de las preguntas originales y la barajamos
+const aleatorioQuestions = aleatorioArray([...questions]); // Usamos el spread operator para copiar y luego barajar
+
 let array_respuesta = JSON.parse(localStorage.getItem('quiz')) || [];
 let currentQuestionIndex = 0; // Esta variable nos ayudará a saber qué pregunta mostrar
 
@@ -8,7 +22,7 @@ export function getQuestions() {
     questionsList.innerHTML = ''; // Importante: Limpiamos el contenedor antes de añadir la nueva pregunta
 
     // Obtenemos la pregunta actual usando el índice
-    const pregunta = questions[currentQuestionIndex];
+    const pregunta = aleatorioQuestions[currentQuestionIndex];
 
     // Si ya no hay más preguntas, mostramos el puntaje final
     if (!pregunta) {
@@ -27,7 +41,7 @@ export function getQuestions() {
     article.innerHTML = `
         <section class="container-ejercicio">
             <section class="preguntaResponder">
-                <h1>${id}.${title}</h1>
+                <h1> ${title}</h1>
                 <input class="form-check-input" type="radio" name="radio-${id}" value="${correct}" ${respuestaGuardada?.respuesta === correct ? 'checked' : ''}><label>${correct}</label>
                 <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect2}" ${respuestaGuardada?.respuesta === incorrect2 ? 'checked' : ''}><label>${incorrect2}</label>
                 <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect3}" ${respuestaGuardada?.respuesta === incorrect3 ? 'checked' : ''}><label>${incorrect3}</label>
