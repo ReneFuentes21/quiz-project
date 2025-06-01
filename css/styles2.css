@@ -74,7 +74,7 @@ padre, no al hijo. Para que se muevan las cajas.*/
     /*Propiedades flexbox al padre de lo que queremos
     que tnga la propiedad de flexbox*/
     
-    /*OJO: siempre buscar el contenido del lpadre de los elementos 
+    /*OJO: siempre buscar el contenido del padre de los elementos 
     que queremos alinear*/
     
     /*----- CSS GRID -----*/
@@ -95,9 +95,9 @@ padre, no al hijo. Para que se muevan las cajas.*/
     .gridbox .box:nth-child(1){
         grid-area: 1/1/2/3;
         /*1 -> iniciodefila
-          2-> donde va a empezar la columna
-          3-> donde va a terminar la fila(pero el numero que ponemos no se incluye
-          4-> donde va a termiar la columna (no se incluye el num que coloquemos*/
+        2-> donde va a empezar la columna
+        3-> donde va a terminar la fila(pero el numero que ponemos no se incluye
+        4-> donde va a termiar la columna (no se incluye el num que coloquemos*/
     }
     
     /*grid-area combinacion de grid-column y grid-row

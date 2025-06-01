@@ -1,0 +1,16 @@
+*{ 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --backg-color: #313E51;
+    --button-color: #A529F5;
+    --options-color: #3C4C67;
+    --font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: #313E51 !important;
+}
