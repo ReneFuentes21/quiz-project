@@ -58,14 +58,6 @@ export function getQuestions() {
     article.querySelectorAll(`input[name="radio-${id}"]`).forEach(input => {
         input.addEventListener('change', (e) => {
             respuesta(e, id); // Guardamos la respuesta del usuario
-<<<<<<< HEAD
-=======
-            // Después de responder, avanzamos a la siguiente pregunta con un pequeño retraso
-            setTimeout(() => {
-                currentQuestionIndex++; // Incrementamos el índice para la siguiente pregunta
-                getQuestions(); // Llamamos de nuevo a la función para cargar la siguiente pregunta
-            }, 300); // 300 milisegundos de espera
->>>>>>> 2367edbf5803f637f80c28c1703bc07e755f8022
         });
     });
 
@@ -85,8 +77,6 @@ export function getQuestions() {
     getQuestions(); // Llamamos la función para mostrar la siguiente pregunta
     });
 }
-
-
 
 
 export function respuesta(e, idPregunta) {
