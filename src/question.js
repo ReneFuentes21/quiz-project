@@ -63,6 +63,14 @@ export function getQuestions() {
 
     questionsList.appendChild(article); // Añadimos la pregunta al DOM
     
+    if (article.querySelector(`input[name="radio-${id}"]:checked`)) {
+        // Si el innerHTML ha marcado algo (por localStorage), lo desmarcamos.
+        // Esto solo ocurre cuando la pregunta se renderiza.
+        article.querySelectorAll(`input[name="radio-${id}"]`).forEach(input => {
+            input.checked = false;
+        });
+    }
+
     // Asignar evento al botón "Siguiente Pregunta"
     const btnSiguiente = article.querySelector('#btn-siguiente');
     btnSiguiente.addEventListener('click', () => {
