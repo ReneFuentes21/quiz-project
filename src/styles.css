@@ -49,6 +49,53 @@ h1{
     border-radius: 0.8rem;
 }
 
+.opcion:hover{ /*OJOOO: AGREGAR A MEDIA QUERY PARA COMPUTADORAAAAA*/
+    font-weight: bold;
+}
+
 .opcion label{
     padding-left: 1.5rem; /*espacio entre radbutton y texo*/
+}
+
+
+/* ---- MEDIA QUERY PARA TAMAÑO DESKTOP ---- */
+@media (min-width: 1024px) {
+    body{
+        color: var(--button-color);
+    }
+
+    .container-pregunta
+{
+    display: flex;
+    flex-direction: column;
+    margin: 0;
+    padding-left: 0rem;
+}
+
+    .preguntaResponder{
+    display: flex;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    width: 50rem;
+    }
+
+    h1{
+    font-weight: bold;
+    padding-left: 0;
+    text-align: start;
+}
+
+.opcion{
+    width: 20rem;
+    margin: 0.6rem;
+    background-color: var(--options-color);
+    padding: 1.8rem;
+    border-radius: 0.8rem;
+}
+
+    .opcion:hover{ /*OJOOO: AGREGAR A MEDIA QUERY PARA COMPUTADORAAAAA*/
+    font-weight: bold;
+    background-color: #dbdada;
+}
+
 }

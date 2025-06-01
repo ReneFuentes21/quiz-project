@@ -101,6 +101,9 @@ function mostrarPuntaje() {
         }
     });
     alert(`Puntaje: ${correctas} de ${questions.length}`);
+
+    localStorage.removeItem('quiz'); //Sirve para reiniciar el progreso que se había guardado
+    location.reload(); // Recarga la página para reiniciar todo
 }
 
 // Esta función para el botón "Enviar" ya no es tan crítica si las preguntas avanzan solas.
@@ -115,15 +118,12 @@ export function agregarBotonEnviar() {
 
 
 //función que actualiza la barra de progreso según las preguntas respondidas hasta el momento
-function actualizarBarraProgreso() {
+export function actualizarBarraProgreso() {
     const barra = document.getElementById('barra-progreso');
     if (!barra) return; // Evita que dé error si aun no se ha construido la barra
 
-    const total = aleatorioQuestions.length;
-    //Para 
-    const respondidas = array_respuesta.filter(r =>aleatorioQuestions.some(p => p.id === r.id && r.respuesta)).length;
-
-    
+    const total = questions.length;
+    const respondidas = array_respuesta.filter(r => r.respuesta).length;
     const porcentaje = Math.round((respondidas / total) * 100);
 
     barra.style.width = `${porcentaje}%`;
