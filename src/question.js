@@ -39,19 +39,32 @@ export function getQuestions() {
     // Buscamos si ya hay una respuesta guardada para esta pregunta
     const respuestaGuardada = array_respuesta.find(r => r.id === id);
 
-
-
     article.innerHTML = `
         <section class="container-ejercicio">
             <section class="preguntaResponder">
-                <h1> ${title}</h1>
-                <input class="form-check-input" type="radio" name="radio-${id}" value="${correct}" ${respuestaGuardada?.respuesta === correct ? 'checked' : ''}><label>${correct}</label>
-                <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect2}" ${respuestaGuardada?.respuesta === incorrect2 ? 'checked' : ''}><label>${incorrect2}</label>
-                <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect3}" ${respuestaGuardada?.respuesta === incorrect3 ? 'checked' : ''}><label>${incorrect3}</label>
-                <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect1}" ${respuestaGuardada?.respuesta === incorrect1 ? 'checked' : ''}><label>${incorrect1}</label>
-                <button class="btn btn-primary " id="btn-siguiente" type="submit" name="siguiente">Enviar Respuesta</button>
+                <div class="pregunta-titulo">
+                    <h1> ${title}</h1>
+                    <h3 class="num-pregunta">Pregunta ${currentQuestionIndex + 1} de ${questions.length}</h3>
+                </div>
+                <section class="opciones"> <!--- Contenedor de opciones---->
+                    <div class="opcion"> <!---hace que el radbutton y label estén en misma fila--->
+                        <input class="form-check-input" type="radio" name="radio-${id}" value="${correct}" ${respuestaGuardada?.respuesta === correct ? 'checked' : ''}><label>${correct}</label>
+                    </div>
+                    <div class="opcion">
+                        <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect2}" ${respuestaGuardada?.respuesta === incorrect2 ? 'checked' : ''}><label>${incorrect2}</label>
+                    </div>
+                    <div class="opcion">
+                        <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect3}" ${respuestaGuardada?.respuesta === incorrect3 ? 'checked' : ''}><label>${incorrect3}</label>
+                    </div>
+                    <div class="opcion">
+                        <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect1}" ${respuestaGuardada?.respuesta === incorrect1 ? 'checked' : ''}><label>${incorrect1}</label>
+                    </div>
+                    <div class="d-flex justify-content-center mt-3">
+                        <button class="btn btn-color" id="btn-siguiente" type="submit" name="siguiente">Siguiente Pregunta</button>
+                    </div>
                 </section>
-        </section>
+                </section>
+                
     `;
 
     // Asignamos el evento 'change' a cada opción de respuesta
@@ -62,6 +75,7 @@ export function getQuestions() {
     });
 
     questionsList.appendChild(article); // Añadimos la pregunta al DOM
+    actualizarBarraProgreso(); //Actualizando barra de progreso
     
     if (article.querySelector(`input[name="radio-${id}"]:checked`)) {
         // Si el innerHTML ha marcado algo (por localStorage), lo desmarcamos.
@@ -112,6 +126,9 @@ function mostrarPuntaje() {
         }
     });
     alert(`Puntaje: ${correctas} de ${questions.length}`);
+
+    localStorage.removeItem('quiz'); //Sirve para reiniciar el progreso que se había guardado
+    location.reload(); // Recarga la página para reiniciar todo
 }
 
 // Esta función para el botón "Enviar" ya no es tan crítica si las preguntas avanzan solas.
@@ -122,4 +139,19 @@ export function agregarBotonEnviar() {
     btn.textContent = 'Ver mi puntaje';
     btn.addEventListener('click', mostrarPuntaje);
     questionsList.appendChild(btn);
+}
+
+
+//función que actualiza la barra de progreso según las preguntas respondidas hasta el momento
+export function actualizarBarraProgreso() {
+    const barra = document.getElementById('barra-progreso');
+    if (!barra) return; // Evita que dé error si aun no se ha construido la barra
+
+    const total = questions.length;
+    const respondidas = array_respuesta.filter(r => r.respuesta).length;
+    const porcentaje = Math.round((respondidas / total) * 100);
+
+    barra.style.width = `${porcentaje}%`;
+    barra.setAttribute('aria-valuenow', porcentaje);
+    barra.textContent = `${porcentaje}%`;
 }
