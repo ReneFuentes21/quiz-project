@@ -39,13 +39,12 @@ export function getQuestions() {
     // Buscamos si ya hay una respuesta guardada para esta pregunta
     const respuestaGuardada = array_respuesta.find(r => r.id === id);
 
-
-
     article.innerHTML = `
         <section class="container-ejercicio">
             <section class="preguntaResponder">
                 <div class="pregunta-titulo">
                     <h1> ${title}</h1>
+                    <h3 class="num-pregunta">Pregunta ${currentQuestionIndex + 1} de ${questions.length}</h3>
                 </div>
                 <section class="opciones"> <!--- Contenedor de opciones---->
                     <div class="opcion"> <!---hace que el radbutton y label estén en misma fila--->

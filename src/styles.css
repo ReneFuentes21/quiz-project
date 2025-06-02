@@ -78,7 +78,7 @@ h1{
     justify-content:start;
     flex-direction:row;
     align-items:flex-start;
-    margin-left: 10rem;
+    margin-left: 8rem;
 
 }
 .preguntaResponder{
@@ -88,23 +88,43 @@ h1{
     padding-left: 1rem;
     padding-right: 1rem;
     width: 300rem;
-    align-items: center;
+    /*align-items: center;*/
 }
 
 .progress{
+    margin-top: 2.5rem;
     margin-left: 2rem;
-    width: 30rem;
+    width: 32rem;
 }
+
+.progress-bar{
+    background-color: var(--button-color);
+}
+
+.num-pregunta {
+    font-size: 1rem;
+    color:#dbdada;
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+}
+
 h1{
     font-weight: bold;
     padding-right: 10rem;
-    justify-content: center;
+}
 
+.pregunta-titulo{
+    width: 40rem;
+}
+
+.opcion{
+    width: 20rem;
 }
 
 .opcion:hover{ /*OJOOO: AGREGAR A MEDIA QUERY PARA COMPUTADORAAAAA*/
     font-weight: bold;
     background-color:#c26cfc7a;
+    
 }
 
 .btn-color{
@@ -113,9 +133,11 @@ h1{
 }
 
 .btn-color:hover{
-    background-color:#7b18bd;
+    background-color:#8d23d4;
     color: #dbdada;
     font-weight: bold;
+    box-shadow: 0 0 20px 3px rgba(255, 255, 255, 0.3);
+    transition: box-shadow 0.3s ease;
 }
 
 }
