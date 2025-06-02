@@ -32,6 +32,8 @@ h1{
 .preguntaResponder{
     padding-top: 1rem;
     padding-bottom: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
 }
 
 /*hace que las opciones estén una debajo de otra*/
@@ -58,44 +60,62 @@ h1{
 }
 
 
-/* ---- MEDIA QUERY PARA TAMAÑO DESKTOP ---- */
-@media (min-width: 1024px) {
-    body{
-        color: var(--button-color);
-    }
-
-    .container-pregunta
-{
-    display: flex;
-    flex-direction: column;
-    margin: 0;
-    padding-left: 0rem;
+.btn-color{
+    background-color: var(--button-color);
+    color: #dbdada;
+    font-weight: bold;
+    width: 80%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
 }
 
-    .preguntaResponder{
+
+/* ---- MEDIA QUERY PARA TAMAÑO DESKTOP ---- */
+@media(min-width: 1024px){
+    .container-pregunta /*centra todo*/
+{
+    display: flex;
+    justify-content:start;
+    flex-direction:row;
+    align-items:flex-start;
+    margin-left: 10rem;
+
+}
+.preguntaResponder{
     display: flex;
     padding-top: 1rem;
     padding-bottom: 3rem;
-    width: 50rem;
-    }
-
-    h1{
-    font-weight: bold;
-    padding-left: 0;
-    text-align: start;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 300rem;
+    align-items: center;
 }
 
-.opcion{
-    width: 20rem;
-    margin: 0.6rem;
-    background-color: var(--options-color);
-    padding: 1.8rem;
-    border-radius: 0.8rem;
+.progress{
+    margin-left: 2rem;
+    width: 30rem;
+}
+h1{
+    font-weight: bold;
+    padding-right: 10rem;
+    justify-content: center;
+
 }
 
-    .opcion:hover{ /*OJOOO: AGREGAR A MEDIA QUERY PARA COMPUTADORAAAAA*/
+.opcion:hover{ /*OJOOO: AGREGAR A MEDIA QUERY PARA COMPUTADORAAAAA*/
     font-weight: bold;
-    background-color: #dbdada;
+    background-color:#c26cfc7a;
+}
+
+.btn-color{
+
+    width: 95%;
+}
+
+.btn-color:hover{
+    background-color:#7b18bd;
+    color: #dbdada;
+    font-weight: bold;
 }
 
 }

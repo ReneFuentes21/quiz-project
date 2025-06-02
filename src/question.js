@@ -44,7 +44,9 @@ export function getQuestions() {
     article.innerHTML = `
         <section class="container-ejercicio">
             <section class="preguntaResponder">
-                <h1> ${title}</h1>
+                <div class="pregunta-titulo">
+                    <h1> ${title}</h1>
+                </div>
                 <section class="opciones"> <!--- Contenedor de opciones---->
                     <div class="opcion"> <!---hace que el radbutton y label estén en misma fila--->
                         <input class="form-check-input" type="radio" name="radio-${id}" value="${correct}" ${respuestaGuardada?.respuesta === correct ? 'checked' : ''}><label>${correct}</label>
@@ -58,9 +60,11 @@ export function getQuestions() {
                     <div class="opcion">
                         <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect1}" ${respuestaGuardada?.respuesta === incorrect1 ? 'checked' : ''}><label>${incorrect1}</label>
                     </div>
-                    <button class="btn btn-primary " id="btn-siguiente" type="submit" name="siguiente">Siguiente Pregunta</button>
+                    <div class="d-flex justify-content-center mt-3">
+                        <button class="btn btn-color" id="btn-siguiente" type="submit" name="siguiente">Siguiente Pregunta</button>
+                    </div>
                 </section>
-            </section>
+                </section>
                 
     `;
 
