@@ -1,0 +1,143 @@
+*{ 
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root{
+    --backg-color: #313E51;
+    --button-color: #A529F5;
+    --options-color: #3C4C67;
+    --font-family: 'Poppins', sans-serif;
+}
+
+body{
+    background-color: var(--backg-color);
+    color: #dbdada;
+}
+
+h1{
+    font-weight: bold;
+    padding-left: 1.2rem;
+}
+
+.container-pregunta /*centra todo*/
+{
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+
+}
+.preguntaResponder{
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+}
+
+/*hace que las opciones estén una debajo de otra*/
+.opciones{
+    display: flex;
+    flex-direction: column;
+    padding-top: 1rem;
+}
+
+/*Margen entre cada opción*/
+.opcion{
+    margin: 0.6rem;
+    background-color: var(--options-color);
+    padding: 1.8rem;
+    border-radius: 0.8rem;
+}
+
+.opcion:hover{ /*OJOOO: AGREGAR A MEDIA QUERY PARA COMPUTADORAAAAA*/
+    font-weight: bold;
+}
+
+.opcion label{
+    padding-left: 1.5rem; /*espacio entre radbutton y texo*/
+}
+
+
+.btn-color{
+    background-color: var(--button-color);
+    color: #dbdada;
+    font-weight: bold;
+    width: 80%;
+    padding-top: 1rem;
+    padding-bottom: 1rem;
+}
+
+
+/* ---- MEDIA QUERY PARA TAMAÑO DESKTOP ---- */
+@media(min-width: 1024px){
+    .container-pregunta /*centra todo*/
+{
+    display: flex;
+    justify-content:start;
+    flex-direction:row;
+    align-items:flex-start;
+    margin-left: 8rem;
+
+}
+.preguntaResponder{
+    display: flex;
+    padding-top: 1rem;
+    padding-bottom: 3rem;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    width: 300rem;
+    /*align-items: center;*/
+}
+
+.progress{
+    margin-top: 2.5rem;
+    margin-left: 2rem;
+    width: 32rem;
+}
+
+.progress-bar{
+    background-color: var(--button-color);
+}
+
+.num-pregunta {
+    font-size: 1rem;
+    color:#dbdada;
+    margin-left: 1.5rem;
+    margin-top: 1rem;
+}
+
+h1{
+    font-weight: bold;
+    padding-right: 10rem;
+}
+
+.pregunta-titulo{
+    width: 40rem;
+}
+
+.opcion{
+    width: 20rem;
+}
+
+.opcion:hover{ /*OJOOO: AGREGAR A MEDIA QUERY PARA COMPUTADORAAAAA*/
+    font-weight: bold;
+    background-color:#c26cfc7a;
+    
+}
+
+.btn-color{
+
+    width: 95%;
+}
+
+.btn-color:hover{
+    background-color:#8d23d4;
+    color: #dbdada;
+    font-weight: bold;
+    box-shadow: 0 0 20px 3px rgba(255, 255, 255, 0.3);
+    transition: box-shadow 0.3s ease;
+}
+
+}
