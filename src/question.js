@@ -49,7 +49,7 @@ export function getQuestions() {
                 <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect2}" ${respuestaGuardada?.respuesta === incorrect2 ? 'checked' : ''}><label>${incorrect2}</label>
                 <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect3}" ${respuestaGuardada?.respuesta === incorrect3 ? 'checked' : ''}><label>${incorrect3}</label>
                 <input class="form-check-input" type="radio" name="radio-${id}" value="${incorrect1}" ${respuestaGuardada?.respuesta === incorrect1 ? 'checked' : ''}><label>${incorrect1}</label>
-                <button class="btn btn-primary " id="btn-siguiente" type="submit" name="siguiente">Siguiente Pregunta</button>
+                <button class="btn btn-primary " id="btn-siguiente" type="submit" name="siguiente">Enviar Respuesta</button>
                 </section>
         </section>
     `;
